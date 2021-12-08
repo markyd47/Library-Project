@@ -11,8 +11,9 @@ function sortAccountsByLastName(accounts) {
 function getTotalNumberOfBorrows(account, books) {
   const patronId = account.id; 
   let count = 0; 
-
-  books.forEach((book) => {
+  
+  function countPatronBooks(book) {
+  
     const borrows = book.borrows;
 
     count = borrows.reduce((acc, borrow) => {
@@ -21,10 +22,16 @@ function getTotalNumberOfBorrows(account, books) {
       }
       return acc;
     }, count);
-  });
+  }
+
+  books.forEach(countPatronBooks);
+                
+                
 
   return count;
 }
+
+
 
 
 function getBooksPossessedByAccount(account, books, authors) {
